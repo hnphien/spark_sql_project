@@ -26,19 +26,6 @@ object PublicMetaStore {
 
     import spark.implicits._
 
-    val res_PYC_MBNT_QUANLY_TRANGTHAI = readDelta(spark,s"$DELTA_GOLD/PYC_MBNT_QUANLY_TRANGTHAI").orderBy(col("ETL_DT"))
-    val res_PYC_MBNT_ALM_USD = readDelta(spark,s"$DELTA_GOLD/PYC_MBNT_ALM_USD").orderBy(col("ETL_DT"))
-    val res_PYC_MBNT_SODU_NOSTRO = readDelta(spark,s"$DELTA_GOLD/PYC_MBNT_SODU_NOSTRO").orderBy(col("ETL_DT"))
-
-    spark.sql("DROP TABLE IF EXISTS PYC_MBNT_QUANLY_TRANGTHAI")
-    res_PYC_MBNT_QUANLY_TRANGTHAI.write.saveAsTable("PYC_MBNT_QUANLY_TRANGTHAI")
-
-    spark.sql("DROP TABLE IF EXISTS PYC_MBNT_ALM_USD")
-    res_PYC_MBNT_ALM_USD.write.saveAsTable("PYC_MBNT_ALM_USD")
-
-    spark.sql("DROP TABLE IF EXISTS PYC_MBNT_SODU_NOSTRO")
-    res_PYC_MBNT_SODU_NOSTRO.write.saveAsTable("PYC_MBNT_SODU_NOSTRO")
-
     /*keep session alive*/
     while (true) {
       Thread.`yield`()
